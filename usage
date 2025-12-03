@@ -1,0 +1,36 @@
+module load python3/3.11.1
+python generate_circus_ini.py
+circusd circus.ini
+Then:
+
+bash
+Copy code
+module load python3/3.11.1
+circusweb --endpoint tcp://127.0.0.1:5555
+Open circus-web in the browser.
+
+Will see watchers like:
+
+A_monitor_P001
+
+A_monitor_P002
+
+B_monitor_P001
+
+…
+
+Each one:
+
+Starts automatically when circusd starts (autostart = true)
+
+If the process crashes or exits, Circus does not restart it because respawn = False
+
+The status in web UI becomes “stopped”
+
+Can click Restart as many times as you want
+
+Restart runs the script with --reset, so it clears that monitor’s CSV and JSON and recollects from scratch for that (monitor, project) only
+
+Other monitors and other projects are not touched.
+
+If ever want a monitor that does auto restart, just set respawn = True for that watcher only.
