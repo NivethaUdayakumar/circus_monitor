@@ -34,3 +34,5 @@ Restart runs the script with --reset, so it clears that monitor’s CSV and JSON
 Other monitors and other projects are not touched.
 
 If ever want a monitor that does auto restart, just set respawn = True for that watcher only.
+
+circusctl reloadconfig
